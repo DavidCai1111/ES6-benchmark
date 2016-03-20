@@ -8,6 +8,10 @@ A benchmark for some popular ES6 features in Node.js 5.9.0 and Node-chakracore 6
  - Memory: 8GB 1600 MHz DDR3
  - Node.js: 5.9.0 / Node-chakracore 6.0.0-pre5
 
+## Contributor
+
+ - [Brooooooklyn](https://github.com/Brooooooklyn)
+
 ## Benchmark
 
 [concat-strings.js](benchmarks/concat-strings.js)
@@ -133,7 +137,7 @@ string starts with
 
 Chakra:
 string starts with
-  26,774,987 op/s  » string.startsWith(value)
+  26,774,987 op/s » string.startsWith(value)
   47,127,611 op/s » string[0] === value
 ```
 
