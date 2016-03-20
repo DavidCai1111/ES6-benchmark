@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "A benchmark for some popular ES6 features in Node.js",
   "main": "index.js",
-  "scripts": {
-    "benchmark": "./node_modules/.bin/matcha"
-  },
+  "scripts": {},
   "author": "DavidCai1993",
   "license": "MIT",
   "dependencies": {
