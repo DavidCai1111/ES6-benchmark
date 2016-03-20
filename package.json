@@ -1,0 +1,15 @@
+{
+  "name": "es6-benchmark",
+  "version": "1.0.0",
+  "description": "A benchmark for some popular ES6 features in Node.js",
+  "main": "index.js",
+  "scripts": {
+    "benchmark": "./node_modules/.bin/matcha"
+  },
+  "author": "DavidCai1993",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.3.4",
+    "matcha": "^0.7.0"
+  }
+}
