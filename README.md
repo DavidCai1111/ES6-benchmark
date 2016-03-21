@@ -2,6 +2,12 @@
 
 A benchmark for some popular ES6 features in Node.js 5.9.0 and Node-chakracore 6.0.0-pre5.
 
+## Run Benchmark
+
+```
+npm run benchmark
+```
+
 ## Env
 
  - CPU: Intel Core(TM) i5-2410M 2.30GHz
