@@ -1,11 +1,12 @@
 'use strict'
-suite('string.repeat() vs use +', function () {
-  const a = 'a'
-  bench('string.repeat()', function () {
-    a.repeat(10)
+suite('String#repeat() vs polyfill', function () {
+  const a = 'abcd'
+
+  bench('String#repeat', function () {
+    a.repeat(100)
   })
 
-  bench('use +', function () {
-    a + a + a + a + a + a + a + a + a + a
+  bench('use Array#join trick', function () {
+    new Array(100 + 1).join(a)
   })
 })

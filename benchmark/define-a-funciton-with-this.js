@@ -6,6 +6,8 @@ suite('define a function with inherited this', function () {
       self
       return '1'
     }
+
+    a();
   })
 
   bench('() =>', function () {
@@ -13,5 +15,7 @@ suite('define a function with inherited this', function () {
       this
       return '1'
     }
+
+    a();
   })
 })

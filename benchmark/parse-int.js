@@ -1,6 +1,5 @@
 'use strict'
 suite('global.parseInt() vs Number.parseInt()', function () {
-  const a = 'a'
   bench('global.parseInt()', function () {
     parseInt('10', 10)
   })
