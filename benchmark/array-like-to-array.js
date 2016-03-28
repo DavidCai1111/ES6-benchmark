@@ -6,11 +6,12 @@ suite('array like object to array', function () {
     '2': 'c'
   }
   a.length = 3
-  bench('Array.prototype.slice.call', function () {
-    Array.prototype.slice.call(a)
-  })
 
   bench('Array.from', function () {
     Array.from(a)
+  })
+
+  bench('Array.prototype.slice.call', function () {
+    Array.prototype.slice.call(a)
   })
 })
