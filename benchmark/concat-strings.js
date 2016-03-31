@@ -6,10 +6,10 @@ suite('template string vs use +', function () {
   let d = [4]
 
   bench('template string', function () {
-    let str = `a:${a} b:${b} c:${c} d:${d}`
+    return `a:${a} b:${b} c:${c} d:${d}`
   })
 
   bench("use +", function () {
-    let str = 'a:' + a + ' b:' + b + ' c:' + c + ' d:' + 'd'
+    return 'a:' + a + ' b:' + b + ' c:' + c + ' d:' + d
   })
 })
