@@ -1,6 +1,6 @@
 # ES6-benchmark
 
-A benchmark for some popular ES6 features in Node.js 5.9.0 and Node-chakracore 6.0.0-pre5.
+A benchmark for some popular ES6 features in Node.js 5.10.0 and Node-chakracore 6.0.0-pre5.
 
 ## Run Benchmark
 
@@ -12,11 +12,13 @@ npm run benchmark
 
  - CPU: Intel Core(TM) i5-2410M 2.30GHz
  - Memory: 8GB 1600 MHz DDR3
- - Node.js: 5.9.0 / Node-chakracore 6.0.0-pre5
+ - Node.js: 5.10.0 / Node-chakracore 6.0.0-pre5
 
 ## Contributor
 
  - [Brooooooklyn](https://github.com/Brooooooklyn)
+ - [CarterLi](https://github.com/CarterLi)
+ - [jucrouzet](https://github.com/jucrouzet)
 
 ## Benchmark
 
@@ -25,27 +27,27 @@ npm run benchmark
 ```
 V8:
 template string vs use +
-  14,643,602 op/s » ${a}${b}
-  96,959,110 op/s » a + b
+  1,524,602 op/s » template string
+  1,391,110 op/s » use +
 
 Chakra:
 template string vs use +
-  35,756,501 op/s » ${a}${b}
-  19,995,366 op/s » a + b
+  2,316,501 op/s » template string
+  2,277,366 op/s » use +
 ```
 
 [for-of-for-loop.js](benchmarks/for-of-for-loop.js)
 
 ```
 V8:
-for...of vs for loop
-  851,761 op/s    » for...of
-  12,507,823 op/s » for loop, i < arr.length
+for...of vs forEach
+  260,761 op/s    » for...of
+  210,823 op/s    » Array#forEach
 
 Chakra:
-for...of vs for loop
-  1,133,193 op/s  » for...of
-  16,715,320 op/s » for loop, i < arr.length
+for...of vs forEach
+  276,133,193 op/s  » for...of
+  695,715,320 op/s  » Array#forEach
 ```
 
 [merge-objects.js](benchmarks/merge-objects.js)
@@ -53,13 +55,13 @@ for...of vs for loop
 ```
 V8:
 merge objects
-  669,921 op/s    » Object.assign
-  23,625,182 op/s » for...in loop and assign
+    314,921 op/s  » Object.assign
+  3,854,182 op/s  » for...in loop and assign
 
 Chakra:
 merge objects
-  3,102,889 op/s  » Object.assign
-  3,744,837 op/s  » for...in loop and assign
+  2,263,889 op/s  » Object.assign
+  1,647,837 op/s  » for...in loop and assign
 ```
 
 [declear-class.js](benchmarks/declear-class.js)
@@ -67,27 +69,41 @@ merge objects
 ```
 V8:
 declear a class
-  118,864 op/s » Class
-  153,662 op/s » use function and prototype
+  47,864 op/s  » class statement
+  42,662 op/s  » use function and prototype
 
 Chakra:
 declear a class
-  560,705 op/s » Class
-  701,991 op/s » use function and prototype
+  191,705 op/s » class statement
+  201,991 op/s » use function and prototype
 ```
 
 [repeat-string.js](benchmarks/repeat-string.js)
 
 ```
 V8:
-string.repeat() vs use +
-  8,828,842 op/s   » string.repeat()
-  107,824,137 op/s » use +
+String#repeat() vs polyfill
+  7,774,842 op/s  » String#repeat
+    222,137 op/s  » use Array#join trick
 
 Chakra:
-string.repeat() vs use +
-  13,022,259 op/s  » string.repeat()
-  3,328,631 op/s   » use +
+String#repeat() vs polyfill
+  1,674,259 op/s  » String#repeat
+   169,631 op/s   » use Array#join trick
+```
+
+[spread-operator](benchmarks/spread-operator.js)
+
+```
+V8:
+spread operator
+   1,042,842 op/s » noop(...[1,2,3])
+  12,241,137 op/s » noop.apply(null, [1,2,3])
+
+Chakra:
+spread operator
+  3,409,259 op/s  » noop(...[1,2,3])
+  5,406,631 op/s  » noop.apply(null, [1,2,3])
 ```
 
 [array-like-to-array.js](benchmarks/array-like-to-array.js)
@@ -95,13 +111,13 @@ string.repeat() vs use +
 ```
 V8:
 array like object to array
-  1,302,649 op/s » Array.from
-  540,458 op/s   » Array.prototype.slice.call
+  1,453,649 op/s » Array.from
+    562,458 op/s » Array.prototype.slice.call
 
 Chakra:
 array like object to array
-  1,864,649 op/s » Array.from
-  2,537,458 op/s   » Array.prototype.slice.call
+  1,994,649 op/s » Array.from
+  2,897,458 op/s » Array.prototype.slice.call
 ```
 
 [promise-bluebird.js](benchmarks/promise-bluebird.js)
@@ -109,12 +125,12 @@ array like object to array
 ```
 promise vs bluebird
 V8:
-  322,534 op/s   » promise
+    322,534 op/s » promise
   1,763,186 op/s » bluebird
 
 Chakra:
-  69,534 op/s   » promise
-  178,186 op/s » bluebird
+   93,534 op/s » promise
+  205,186 op/s » bluebird
 ```
 
 [var-let-const.js](benchmarks/var-let-const.js)
@@ -123,14 +139,14 @@ Chakra:
 V8:
 var let const
   134,028,614 op/s » let
-  129,193,000 op/s » const
-  431,460,321 op/s » var
+  132,193,000 op/s » const
+  438,460,321 op/s » var
 
 Chakra:
 var let const
-  156,028,614 op/s » let
-  170,193,000 op/s » const
-  150,460,321 op/s » var
+  168,028,614 op/s » let
+  171,193,000 op/s » const
+  153,460,321 op/s » var
 ```
 
 [string-start-with.js](benchmarks/string-start-with.js)
@@ -138,13 +154,13 @@ var let const
 ```
 V8:
 string starts with
-  9,774,987 op/s  » string.startsWith(value)
-  74,127,611 op/s » string[0] === value
+  10,774,987 op/s » string.startsWith(value)
+  15,127,611 op/s » use regexp
 
 Chakra:
 string starts with
-  26,774,987 op/s » string.startsWith(value)
-  47,127,611 op/s » string[0] === value
+  30,774,987 op/s » string.startsWith(value)
+  12,127,611 op/s » use regexp
 ```
 
 [define-a-funciton-with-this.js](benchmarks/define-a-funciton-with-this.js)
@@ -152,13 +168,15 @@ string starts with
 ```
 V8:
 define a function with inherited this
-  59,661,143 op/s » () =>
-  64,874,220 op/s » function statement
+  28,661,143 op/s » function statement with self = this
+     479,220 op/s » function statement with bind
+  26,874,220 op/s » arrow function () =>
 
 Chakra:
 define a function with inherited this
-  69,661,143 op/s » () =>
-  69,874,220 op/s » function statement
+  62,661,143 op/s » function statement with self = this
+   6,874,220 op/s » function statement with bind
+  61,237,253 op/s » arrow function () =>
 ```
 
 [parse-int.js](benchmarks/parse-int.js)
@@ -171,6 +189,6 @@ global.parseInt() vs Number.parseInt()
 
 Chakra:
 global.parseInt() vs Number.parseInt()
-  16,940,634 op/s  » Number.parseInt()
-  19,509,873 op/s  » global.parseInt()
+  23,940,634 op/s  » Number.parseInt()
+  24,509,873 op/s  » global.parseInt()
 ```
